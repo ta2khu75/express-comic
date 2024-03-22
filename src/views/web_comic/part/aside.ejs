@@ -1,0 +1,40 @@
+<div class="border border-primary">
+  <h5>Follow</h5>
+  <ul class="list-group">
+    <% follows.forEach(element=> { %>
+      <li class="list-group-item">
+        <div class="row">
+          <img class="col-3" src="<%= element.poster %>"  alt="">
+          <div class="col-9">
+              <div><a href="/comic/details/<%= element.id %>"><%= element.name %></a></div>
+          </div>
+        </div>
+        </li>
+      <% }) %>
+  </ul>
+</div>
+<div class="border border-primary">
+  <h5>History</h5>
+  <ul class="list-group">
+    <% stories.forEach(element=> { %>
+      <li class="list-group-item">
+        <div class="row">
+          <img class="col-3" src="<%= element.Comic.poster %>"  alt="">
+          <div class="col-9">
+              <div><a href="/comic/details/<%= element.Comic.id %>"><%= element.Comic.name %></a></div>
+              <div class="d-flex justify-content-between"><a  href="/chapter/details/<%= element.id %> ?id=<%= element.Comic.id %>">Read continue <%= element.name %></a> <a href="/history/delete/<%= element.Comic.id %>">Delete</a></div>
+          </div>
+        </div>
+        </li>
+      <% }) %>
+  </ul>
+</div>
+<div>
+  <ul class="list-group">
+    <% categories.forEach(element=> { %>
+      <li class="list-group-item"><a href="/category/details/<%= element.id %>">
+          <%= element.name %>
+        </a></li>
+      <% }) %>
+  </ul>
+</div>

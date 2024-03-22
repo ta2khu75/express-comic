@@ -1,0 +1,41 @@
+<form method="post">
+    <input type="text" value="<%= comic_image.id %>" name="id" hidden>
+    <div class="mb-3">
+        <label for="name" class="form-label">Image</label>
+        <textarea name="url" id="name" cols="30" rows="10" ><%= comic_image.url %></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="chapter" class="form-label">Chapter: <%= chapter.name %></label>
+        <input type="text" value="<%= chapter.id %>" name="chapter_id" class="form-control" id="chapter">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" formaction="/admin/comic_image/insert">Insert</button> <button type="submit"
+        formaction="/admin/comic_image/update" class="btn btn-success">Update</button> <a href="/admin/comic_image">reset</a>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Chapter</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% comic_images.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><img src="<%= element.url %>" width="400px" height="500px" alt=""></td>
+                <td><%= element.ChapterId %></td>
+                <td><%= element.createdAt %></td>
+                <td><%= element.updatedAt %></td>
+                <td><a href="/admin/comic_image/edit/<%= chapter.id %>?comic_image=<%= element.id %>">Edit</a></td>
+                <td><form action="/admin/comic_image/delete/<%= chapter.id %>?comic_image=<%= element.id %>" method="post"><button>Delete</button></form></td>
+            </tr>
+        <% }) %>
+       
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+
+    <form action="/lab4/bai2" method="post" class="container">
+        <div class="mb-3 mt-3">
+            <label for="email" class="form-label">Username:</label>
+            <input type="text" class="form-control" value="<%= form.name %>" id="email" placeholder="Enter email" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="pwd" value="<%= form.password %>" placeholder="Enter password" name="password">
+        </div>
+        <div class="form-check mb-3">
+            <label class="form-check-label">
+                <input class="form-check-input" value="true" type="checkbox" <%= form.remember==true?"checked":"" %>  name="remember"> Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>

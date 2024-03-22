@@ -1,0 +1,91 @@
+<form method="post">
+    <input type="text" value="<%= comic.id %>" name="id" hidden>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" value="<%= comic.name %>" name="name" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="poster" class="form-label">Poster</label>
+        <input type="text" value="<%= comic.poster %>" name="poster" class="form-control" id="poster">
+    </div>
+    <div class="mb-3">
+        <label for="summary" class="form-label">Summary</label>
+        <textarea id="summary" class="w-100" name="summary" rows="10"><%= comic.summary %></textarea>
+    </div>
+    <div class="mb-3 d-flex justify-content-between">
+        <label class="form-label">Status:</label>
+        <div class="form-check">
+            <input class="form-check-input" required <%= comic.status==true?"checked":"" %> name="status" type="radio" value="true"
+                id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Da hoan thanh
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" required <%= comic.status==false||comic==undefined ?"checked":"" %> name="status" type="radio" value="false"
+                id="flexCheckChecked" >
+            <label class="form-check-label" for="flexCheckChecked">
+                Chua hoan thanh
+            </label>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <label class="form-label">Category:</label>
+        <% categories.forEach(element => { %>
+            <div class="form-check">
+                <input class="form-check-input" name="categories" <%= comic.Categories!=undefined && comic.Categories.has(JSON.stringify(element))?"checked":"" %> type="checkbox" value="<%= element.id %>"
+                    id="flexCheck<%= element.id %>" >
+                <label class="form-check-label" for="flexCheck<%= element.id %>">
+                    <%= element.name %>
+                </label>
+            </div>
+        <% }) %>
+    </div>
+    
+    <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <select class="form-select" id="author" name="id_author" required aria-label="Default select example">
+            <% authors.forEach(element => { %>
+            <option value="<%= element.id %>" <%= element.id==0 || comic.AuthorId==element.id?"selected":"" %> ><%= element.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" formaction="/admin/comic/insert">Insert</button> <button type="submit"
+        formaction="/admin/comic/update" class="btn btn-success">Update</button> <a href="/admin/comic">reset</a>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Poster</th>
+            <th>Summary</th>
+            <th>Status</th>
+            <th>Author</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% comics.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><a href="/admin/comic/chapter/<%= element.id %>"><%= element.name %></a></td>
+                <td>
+                    <img src="<%= element.poster%>" width="150px" height="200px" alt="">
+               </td>
+                <td><%= element.summary %></td>
+                <td><%= element.status==0?"Chưa hoàn thành":"Đã hoàn thành"%></td>
+                <td><%= element.Author.name %></td>
+                <td><%= element.createdAt %></td>
+                <td><%= element.updatedAt %></td>
+                <td><a href="/admin/comic/edit?id=<%= element.id %>">Edit</a></td>
+                <td><form action="/admin/comic/delete/<%= element.id %>" method="post"><button>Delete</button></form></td>
+            </tr>
+        <% }) %>
+       
+    </tbody>
+</table>

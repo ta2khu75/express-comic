@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<head>
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <div class="card" style="width:25%">
+        <div class="card-header">
+            <%= item.name %>
+        </div>
+        <img class="card-img-top" src="<%= item.img %>" alt="Card image" style="width:100%">
+        <div class="card-body">
+            <ul>
+                <li>Gia goc: <del>
+                        <%= item.price %>
+                    </del></li>
+                <li>Gia moi: <%= item.price-item.discount %>$ </li>
+                <li>Muc gia: <% if (item.price-item.discount<10) { %>
+                        Giá thấp
+                        <% } else if (item.price-item.discount<100) { %>
+                            Bình thường
+                            <% } else { %>
+                                Giá cao
+                                <% } %>
+                </li>
+            </ul>
+        </div>
+        <div class="cart-footer">
+        </div>
+    </div>
+</body>
+
+</html>

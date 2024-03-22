@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <img src="<%= comic.poster %>" width="100%" alt="">
+        </div>
+        <div class="col-7">
+            <ul class="list-group">
+                <li class="list-group-item">Comic: <%= comic.name %>
+                </li>
+                <li class="list-group-item">Author: <%= comic.Author.name %>
+                </li>
+                <li class="list-group-item">Status: <%= comic.status==0?"Chua hoan thanh":"Da hoan thanh" %>
+                </li>
+                <li class="list-group-item">Categories: <% comic.Categories.forEach(element => { const category=JSON.parse(element) %>
+                 <a href="/category/details/<%= category.id %>"><%= category.name %></a>,  
+                <% }) %>
+                </li>
+                <li class="list-group-item">Views: <%= total_views %>
+                </li>
+            </ul>
+            <% if (follow==undefined) { %>
+                <a class="btn btn-warning" href="/follow/<%= comic.id %>">Follow</a>
+            <% } else { %>
+                <a class="btn btn-warning" href="/unfollow/<%= follow.id %>">Un Follow</a>
+            <% } %>
+        </div>
+        <h5>Nội dung</h5>
+        <hr>
+        <p>
+            <%= comic.summary %>
+        </p>
+        <h5>Danh sách chương</h5>
+        <hr>
+        <ul class="list-group">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Chapter</th>
+                        <th>Update</th>
+                        <th>Views</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <% chapters.forEach(element=> { %>
+
+                    <tr>
+                        <td><a href="/chapter/details/<%= element.id %>?id=<%= comic.id %>" class="">
+                            <%= element.name %>
+                        </a></td>
+                        <td><%= element.createdAt.toLocaleDateString('en-US') %></td>
+                        <td><%= element.views %></td>
+                    </tr>
+                <% }) %>
+
+                </tbody>
+            </table>
+                
+
+        </ul>
+    </div>
+</div>

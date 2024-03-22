@@ -1,0 +1,73 @@
+<div class="d-flex">
+    <a href="/comic/details/<%= chapter.Comic.id %>"><h3><%=chapter.Comic.name %></h3>
+    </a><h3> - <%= chapter.name %></h3>
+</div>
+<div class="d-flex justify-content-center">
+    <% if (comic_images[0].Chapter.id>chapters[chapters.length-1].id) { %>
+        <% for( let index = 0; index < chapters.length; index++ ) { %>
+            <% if (comic_images[0].Chapter.id==chapters[index].id) { %>
+                <a class="btn btn-success m-2" href="/chapter/details/<%= chapters[index+1].id %> ?id=<%= chapters[index].Comic.id %>">Chap trước</a>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <button class="btn btn-success m-2" disabled >Chap trước</button>
+    <% } %>
+    <select name="" id="navigation">
+        <% chapters.forEach(element=> { %>
+            <option  <%= element.id==comic_images[0].Chapter.id?"selected":"" %> value="/chapter/details/<%= element.id %> ?id=<%= element.Comic.id %>">
+                <%= element.name %>
+            </option>
+            <% }) %>
+    </select>
+    <% if (comic_images[0].Chapter.id<chapters[0].id) { %>
+        <% for( let index = 0; index < chapters.length; index++ ) { %>
+            <% if (comic_images[0].Chapter.id==chapters[index].id) { %>
+                <a class="btn btn-primary m-2" href="/chapter/details/<%= chapters[index-1].id %> ?id=<%= chapters[index].Comic.id %>">Chap sau</a>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <button class="btn btn-primary m-2" disabled >Chap sau</button>
+    <% } %>
+</div> 
+<div class="container">
+
+<!-- Load tranh -->
+<% comic_images.forEach(element=> { %>
+    <img src="<%= element.url %>" class="w-100" alt="">
+<% }) %>
+
+<!-- Điều hướng chap -->
+<div class="d-flex justify-content-center">
+    <% if (comic_images[0].Chapter.id>chapters[0].id) { %>
+        <% for( let index = 0; index < chapters.length; index++ ) { %>
+            <% if (comic_images[0].Chapter.id==chapters[index].id) { %>
+                <a class="btn btn-success m-2" href="/chapter/details/<%= chapters[index-1].id %> ?id=<%= chapters[index].Comic.id %>">Chap trước</a>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <button class="btn btn-success m-2" disabled >Chap trước</button>
+    <% } %>
+    <% if (comic_images[0].Chapter.id<chapters[chapters.length-1].id) { %>
+        <% for( let index = 0; index < chapters.length; index++ ) { %>
+            <% if (comic_images[0].Chapter.id==chapters[index].id) { %>
+                <a class="btn btn-primary m-2" href="/chapter/details/<%= chapters[index+1].id %> ?id=<%= chapters[index].Comic.id %>">Chap sau</a>
+            <% } %>
+        <% } %>
+    <% } else { %>
+        <button class="btn btn-primary m-2" disabled >Chap sau</button>
+    <% } %>
+</div>    
+</div>
+<script>
+var selectElement = document.getElementById('navigation');
+// Thêm sự kiện 'change' cho select
+selectElement.addEventListener('change', function() {
+// Lấy giá trị được chọn
+    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+    // Kiểm tra xem giá trị có tồn tại không
+    if (selectedOption) {
+    // Chuyển hướng sang trang đã chọn
+        window.location.href = selectedOption;
+    }
+});
+</script>

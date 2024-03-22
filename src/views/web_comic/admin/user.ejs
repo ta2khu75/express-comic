@@ -1,0 +1,60 @@
+<form method="post">
+    <input type="text" name="id" value="<%= user.id %>" hidden>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="text" name="email" value="<%= user.email %>" class="form-control" id="email" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" name="password" value="<%= user.password %>" class="form-control" id="password" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="confirm" class="form-label">Confirm Password:</label>
+        <input type="password" name="confirm" value="<%= user.password %>" class="form-control" id="confirm" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3 d-flex justify-content-between">
+        <label class="form-label">Status:</label>
+        <div class="form-check">
+            <input class="form-check-input" required <%= user.role==1?"checked":"" %> name="role" type="radio" value="1"
+                id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Admin
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" required <%= user.role==0||user==undefined ?"checked":"" %> name="role" type="radio" value="0"
+                id="flexCheckChecked" >
+            <label class="form-check-label" for="flexCheckChecked">
+                User
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" formaction="/admin/user/insert">Insert</button> <button type="submit"
+        formaction="/admin/user/update" class="btn btn-success">Update</button> <a href="/admin/user">reset</a>
+</form>
+<table class="container-fluid table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        <% users.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><a href="/admin/user/comic/<%= element.id %>"><%= element.email %></a></td>
+                <td><a href="/admin/user/comic/<%= element.id %>"><%= element.role==1?"Admin":"User" %></a></td>
+                <td><%= element.createdAt %></td>
+                <td><%= element.updatedAt %></td>
+                <td><a href="/admin/user/edit/<%= element.id %>">Edit</a></td>
+                <td><form action="/admin/user/delete/<%= element.id %>" method="post"><button class="btn btn-danger">Delete</button></form></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>city</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><%= element.name %></td>
+                <td><%= element.email %></td>
+                <td><%= element.city %></td>
+                <td style="display: flex; justify-content: center;"><a href="bai1/edit/<%= element.id %>">Edit</a>
+                <form action="bai1/delete/<%=element.id %>" method="post"><button>Delete</button></form></td>
+            </tr>
+        <% }) %>
+       
+    </tbody>
+</table>

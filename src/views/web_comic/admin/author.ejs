@@ -1,0 +1,33 @@
+<form method="post">
+    <input type="text" name="id" value="<%= author.id %>" hidden>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" ng-model="name" name="name" value="<%= author.name %>" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>
+    <button type="submit" class="btn btn-primary" formaction="/admin/author/insert">Insert</button> <button type="submit"
+        formaction="/admin/author/update" class="btn btn-success">Update</button> <a href="/admin/author">reset</a>
+</form>
+<table class="container-fluid table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        <% authors.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><a href="/admin/author/comic/<%= element.id %>"><%= element.name %></a></td>
+                <td><%= element.createdAt %></td>
+                <td><%= element.updatedAt %></td>
+                <td><a href="/admin/author/edit/<%= element.id %>">Edit</a></td>
+                <td><form action="/admin/author/delete/<%= element.id %>" method="post"><button class="btn btn-danger">Delete</button></form></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

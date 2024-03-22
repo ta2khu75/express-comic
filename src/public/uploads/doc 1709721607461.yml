@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ta2khu75
+      MYSQL_ROOT_PASSWORD: Bom474002
+# docker-compose -f ./mysql.yml -p mysql up -d

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Insert title here</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10">
+                    <h1 style="margin-top: 35px">Online Shopping Mail</h1>
+                </div>
+                <div class="col-2">
+                    <img src="https://salt.tikicdn.com/ts/upload/c1/64/f7/4e6e925ea554fc698123ea71ed7bda26.png" style="width: 100px" alt="Avatar Logo"> 
+                </div>
+            </div>
+            <div class="row">
+                <%- include('bai1menu') %>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <% for( let index = 0; index < 8; index++ ) { %>
+                            <div class="col-3 mt-4"><%- include('bai1item') %></div>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <%- include('bai1login') %>
+                    <hr>
+                    <%- include('bai1category') %>
+                </div>
+            </div>
+                <div style="text-align: center">
+                    FPT polytechnic
+                </div>
+        </div>
+    </body>
+</html>

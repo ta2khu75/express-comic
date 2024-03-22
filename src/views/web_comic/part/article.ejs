@@ -1,0 +1,16 @@
+<div class="row">
+    <% comics.forEach(element=> { %>
+        <a href="/comic/details/<%= element.id %>" class="nav-link card col-4 p-2">
+            <img src="<%= element.poster %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= element.name %>
+                </h5>
+
+                <p class="card-text">
+                    <%= element.summary %>
+                </p>
+            </div>
+        </a>
+        <% }) %>
+</div>

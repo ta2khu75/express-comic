@@ -1,0 +1,47 @@
+<form method="post">
+    <input type="text" value="<%= chapter.id %>" name="id" hidden>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" value="<%= chapter.name %>" name="name" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="views" class="form-label">Views</label>
+        <input type="text" value="<%= chapter.views %>" name="views" class="form-control" id="views">
+    </div>
+    <div class="mb-3">
+        <label for="comic" class="form-label">Comic: <%= comic.name %></label>
+        <input type="text" value="<%= comic.id %>" name="comic_id" class="form-control" id="comic">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" formaction="/admin/chapter/insert">Insert</button> <button type="submit"
+        formaction="/admin/chapter/update" class="btn btn-success">Update</button> <a href="/admin/chapter">reset</a>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Views</th>
+            <th>Comic</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% chapters.forEach(element => { %>
+            <tr>
+                <td><%= element.id %></td>
+                <td><a href="/admin/chapter/comic_image/<%= element.id %>"><%= element.name %></a></td>
+                <td><%= element.views %></td>
+                <td><%= element.ComicId %></td>
+                <td><%= element.createdAt %></td>
+                <td><%= element.updatedAt %></td>
+                <td><a href="/admin/chapter/edit/<%= element.ComicId %>?chapter=<%= element.id %>">Edit</a></td>
+                <td><form action="/admin/chapter/delete/<%= comic.id %>?chapter=<%= element.id %>" method="post"><button>Delete</button></form></td>
+            </tr>
+        <% }) %>
+       
+    </tbody>
+</table>

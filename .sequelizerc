@@ -1,0 +1,8 @@
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('./src/config', 'config.json'), // Đường dẫn đến tệp cấu hình cơ sở dữ liệu
+  'models-path': path.resolve('./src/', 'models'), // Đường dẫn đến thư mục chứa các mô hình Sequelize
+  'seeders-path': path.resolve('./src/', 'seeders'), // Đường dẫn đến thư mục chứa các seeders
+  'migrations-path': path.resolve('./src/', 'migrations'), // Đường dẫn đến thư mục chứa các migrations
+};
